@@ -26,7 +26,8 @@ typedef enum
 {
     CRC_REPL_LRU        = 0,
     CRC_REPL_RANDOM     = 1,
-    CRC_REPL_FIFO       = 2     
+    CRC_REPL_FIFO       = 2,
+    CRC_REPL_CLOCK      = 3     
 } ReplacemntPolicy;
 
 // Replacement State Per Cache Line
@@ -35,8 +36,17 @@ typedef struct
     UINT32  LRUstackposition;
 
     // CONTESTANTS: Add extra state per cache line here
+    UINT32  CLOCKstackposition;
 
 } LINE_REPLACEMENT_STATE;
+
+// Cache Replacement Policy 3: Clock
+typedef struct
+{
+    int CLOCK_refer;
+    UINT32 lineplace;
+
+} CLOCK_REPLACEMENT_STATE;
 
 
 // The implementation for the cache replacement policy
@@ -49,12 +59,14 @@ class CACHE_REPLACEMENT_STATE
     UINT32 replPolicy;
     
     LINE_REPLACEMENT_STATE   **repl;
-
-
+    
     COUNTER mytimer;  // tracks # of references to the cache
 
     // CONTESTANTS:  Add extra state for cache here
+
     UINT32 * fifo_repl;
+    CLOCK_REPLACEMENT_STATE  **clock_repl; 
+    UINT32 *linestate;
 
   public:
 
@@ -81,6 +93,9 @@ class CACHE_REPLACEMENT_STATE
     void   UpdateLRU( UINT32 setIndex, INT32 updateWayID );
 
     INT32  Get_FIFO_Victim( UINT32 setIndex );
+
+    INT32  Get_CLOCK_Victim( UINT32 setIndex );
+    void   UpdateCLOCK( UINT32 setIndex, INT32 updateWayID );
 };
 
 

@@ -65,6 +65,7 @@ void CACHE_REPLACEMENT_STATE::InitReplacementState()
         {
             // initialize stack position (for true LRU)
             repl[ setIndex ][ way ].LRUstackposition = way;
+            repl[ setIndex ][ way ].CLOCKstackposition = way;
         }
     }
 
@@ -75,6 +76,21 @@ void CACHE_REPLACEMENT_STATE::InitReplacementState()
     assert(fifo_repl);
     for (UINT32 setIndex = 0; setIndex < numsets; setIndex ++) {
         fifo_repl[ setIndex ] = 0;
+    }
+
+    //Replacement Policy 3: CLOCK
+    clock_repl  = new CLOCK_REPLACEMENT_STATE* [ numsets ];
+    assert(clock_repl);
+    for(UINT32 setIndex=0; setIndex<numsets; setIndex++) 
+    {
+        clock_repl[ setIndex ]  = new CLOCK_REPLACEMENT_STATE[ assoc ];
+        linestate[ setIndex ] = 0;
+        for(UINT32 way=0; way<assoc; way++) 
+        {
+            clock_repl[ setIndex ][ way ].CLOCK_refer  = 0;
+            clock_repl[ setIndex ][ way ].lineplace = way;
+
+        }
     }
 }
 
@@ -105,11 +121,17 @@ INT32 CACHE_REPLACEMENT_STATE::GetVictimInSet( UINT32 tid, UINT32 setIndex, cons
     {
         return Get_Random_Victim( setIndex );
     }
-    // Replacement Policy 3: FIFO
+    // Replacement Policy 2: FIFO
     else if( replPolicy == CRC_REPL_FIFO )
     {
         return Get_FIFO_Victim( setIndex );
     }
+    // Replacement Policy 3: CLOCK
+    else if( replPolicy == CRC_REPL_CLOCK )
+    {
+        return Get_CLOCK_Victim( setIndex );
+    }
+
 
     // We should never get here
     assert(0);
@@ -146,7 +168,12 @@ void CACHE_REPLACEMENT_STATE::UpdateReplacementState(
         // Contestants:  ADD YOUR UPDATE REPLACEMENT STATE FUNCTION HERE
         // Feel free to use any of the input parameters to make
         // updates to your replacement policy
-    }    
+    }
+    // Replacement Policy 3: CLOCK
+    else if( replPolicy == CRC_REPL_CLOCK )
+    {
+        UpdateCLOCK( setIndex, updateWayID);
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -207,6 +234,38 @@ INT32 CACHE_REPLACEMENT_STATE::Get_FIFO_Victim( UINT32 setIndex ) {
     return fifoWay;
 }
 
+// Replacement Policy 3 : CLOCK
+INT32 CACHE_REPLACEMENT_STATE::Get_CLOCK_Victim( UINT32 setIndex ) {
+    CLOCK_REPLACEMENT_STATE *clockSet = clock_repl[ setIndex ];
+
+    INT32   clockWay   = 0;
+
+    UINT32 way = linestate[ setIndex ];
+
+    while (true)
+    {
+        if( clockSet[way].CLOCK_refer == 0 ) 
+        {
+            //replace
+            clockWay = clockSet[way].lineplace;
+            break;
+        }else
+        {
+            //set reference_bit to 0
+            clockSet[way].CLOCK_refer = 0;
+        }
+        //pointer to next
+        way = way + 1 ;
+        if (way == assoc)
+            way = 0;
+    }
+    way = way + 1;
+    if (way == assoc)
+        way = 0;
+    linestate[ setIndex ] = way;
+    return clockWay;
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                                                            //
@@ -232,6 +291,12 @@ void CACHE_REPLACEMENT_STATE::UpdateLRU( UINT32 setIndex, INT32 updateWayID )
 
     // Set the LRU stack position of new line to be zero
     repl[ setIndex ][ updateWayID ].LRUstackposition = 0;
+}
+
+void CACHE_REPLACEMENT_STATE::UpdateCLOCK( UINT32 setIndex, INT32 updateWayID )
+{
+     UINT32 currCLOCKstackposition = repl[setIndex][updateWayID].CLOCKstackposition;
+     clock_repl[setIndex][currCLOCKstackposition].CLOCK_refer=1;
 }
 
 
