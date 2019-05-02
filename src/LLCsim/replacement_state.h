@@ -43,10 +43,10 @@ typedef struct
 // Cache Replacement Policy 3: Clock
 typedef struct
 {
-    int CLOCK_refer;
+    bool CLOCKused;
     UINT32 lineplace;
 
-} CLOCK_REPLACEMENT_STATE;
+} CLOCK_STACK;
 
 
 // The implementation for the cache replacement policy
@@ -65,7 +65,7 @@ class CACHE_REPLACEMENT_STATE
     // CONTESTANTS:  Add extra state for cache here
 
     UINT32 * fifo_repl;
-    CLOCK_REPLACEMENT_STATE  **clock_repl; 
+    CLOCK_STACK   **clockstack;
     UINT32 *linestate;
 
   public:
@@ -95,7 +95,7 @@ class CACHE_REPLACEMENT_STATE
     INT32  Get_FIFO_Victim( UINT32 setIndex );
 
     INT32  Get_CLOCK_Victim( UINT32 setIndex );
-    void   UpdateCLOCK( UINT32 setIndex, INT32 updateWayID );
+    // void   UpdateCLOCK( UINT32 setIndex, INT32 updateWayID );
 };
 
 

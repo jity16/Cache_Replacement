@@ -79,16 +79,17 @@ void CACHE_REPLACEMENT_STATE::InitReplacementState()
     }
 
     //Replacement Policy 3: CLOCK
-    clock_repl  = new CLOCK_REPLACEMENT_STATE* [ numsets ];
-    assert(clock_repl);
+    clockstack  = new CLOCK_STACK* [ numsets ];
+    assert(clockstack);
+    linestate = new UINT32[numsets];
     for(UINT32 setIndex=0; setIndex<numsets; setIndex++) 
     {
-        clock_repl[ setIndex ]  = new CLOCK_REPLACEMENT_STATE[ assoc ];
-        linestate[ setIndex ] = 0;
+        clockstack[ setIndex ]  = new CLOCK_STACK[ assoc ];
+        linestate[setIndex] = 0;
         for(UINT32 way=0; way<assoc; way++) 
         {
-            clock_repl[ setIndex ][ way ].CLOCK_refer  = 0;
-            clock_repl[ setIndex ][ way ].lineplace = way;
+            clockstack[ setIndex ][ way ].CLOCKused = false;
+            clockstack[ setIndex ][ way ].lineplace = way;
 
         }
     }
@@ -172,7 +173,7 @@ void CACHE_REPLACEMENT_STATE::UpdateReplacementState(
     // Replacement Policy 3: CLOCK
     else if( replPolicy == CRC_REPL_CLOCK )
     {
-        UpdateCLOCK( setIndex, updateWayID);
+        clockstack[setIndex][repl[setIndex][updateWayID].CLOCKstackposition].CLOCKused=true;
     }
 }
 
@@ -236,33 +237,31 @@ INT32 CACHE_REPLACEMENT_STATE::Get_FIFO_Victim( UINT32 setIndex ) {
 
 // Replacement Policy 3 : CLOCK
 INT32 CACHE_REPLACEMENT_STATE::Get_CLOCK_Victim( UINT32 setIndex ) {
-    CLOCK_REPLACEMENT_STATE *clockSet = clock_repl[ setIndex ];
+    CLOCK_STACK *clockSet = clockstack[ setIndex ];
 
     INT32   clockWay   = 0;
 
-    UINT32 way = linestate[ setIndex ];
+    UINT32 way = linestate[setIndex];
 
     while (true)
     {
-        if( clockSet[way].CLOCK_refer == 0 ) 
+        if( clockSet[way].CLOCKused == false ) 
         {
-            //replace
             clockWay = clockSet[way].lineplace;
             break;
         }else
         {
-            //set reference_bit to 0
-            clockSet[way].CLOCK_refer = 0;
+            clockSet[way].CLOCKused = false;
         }
-        //pointer to next
-        way = way + 1 ;
-        if (way == assoc)
-            way = 0;
+        way = way+1;
+        if (way==assoc)
+            way=0;
     }
-    way = way + 1;
-    if (way == assoc)
-        way = 0;
-    linestate[ setIndex ] = way;
+    way = way+1;
+    if (way==assoc)
+        way=0;
+    linestate[setIndex]=way;
+    // return clock way
     return clockWay;
 }
 
@@ -293,11 +292,11 @@ void CACHE_REPLACEMENT_STATE::UpdateLRU( UINT32 setIndex, INT32 updateWayID )
     repl[ setIndex ][ updateWayID ].LRUstackposition = 0;
 }
 
-void CACHE_REPLACEMENT_STATE::UpdateCLOCK( UINT32 setIndex, INT32 updateWayID )
-{
-     UINT32 currCLOCKstackposition = repl[setIndex][updateWayID].CLOCKstackposition;
-     clock_repl[setIndex][currCLOCKstackposition].CLOCK_refer=1;
-}
+// void CACHE_REPLACEMENT_STATE::UpdateCLOCK( UINT32 setIndex, INT32 updateWayID )
+// {
+//      UINT32 currCLOCKstackposition = repl[setIndex][updateWayID].CLOCKstackposition;
+//      clock_repl[setIndex][currCLOCKstackposition].CLOCK_refer=1;
+// }
 
 
 
