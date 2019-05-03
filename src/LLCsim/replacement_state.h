@@ -43,7 +43,7 @@ typedef struct
 // Cache Replacement Policy 3: Clock
 typedef struct
 {
-    bool CLOCKused;
+    bool CLOCK_refer;
     UINT32 lineplace;
 
 } CLOCK_STACK;

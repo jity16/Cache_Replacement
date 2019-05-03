@@ -88,7 +88,7 @@ void CACHE_REPLACEMENT_STATE::InitReplacementState()
         linestate[setIndex] = 0;
         for(UINT32 way=0; way<assoc; way++) 
         {
-            clockstack[ setIndex ][ way ].CLOCKused = false;
+            clockstack[ setIndex ][ way ].CLOCK_refer = false;
             clockstack[ setIndex ][ way ].lineplace = way;
 
         }
@@ -174,7 +174,6 @@ void CACHE_REPLACEMENT_STATE::UpdateReplacementState(
     else if( replPolicy == CRC_REPL_CLOCK )
     {
         UpdateCLOCK( setIndex, updateWayID );
-        // clockstack[setIndex][repl[setIndex][updateWayID].CLOCKstackposition].CLOCKused=true;
     }
 }
 
@@ -242,26 +241,29 @@ INT32 CACHE_REPLACEMENT_STATE::Get_CLOCK_Victim( UINT32 setIndex ) {
 
     INT32   clockWay   = 0;
 
-    UINT32 way = linestate[setIndex];
+    UINT32 way = linestate[ setIndex ];
 
-    while (true)
-    {
-        if( clockSet[way].CLOCKused == false ) 
-        {
+    while (true){
+        // Hit : Update references bit to 1
+        if( clockSet[way].CLOCK_refer == false ) {
             clockWay = clockSet[way].lineplace;
             break;
-        }else
-        {
-            clockSet[way].CLOCKused = false;
         }
-        way = way+1;
-        if (way==assoc)
-            way=0;
+        // Miss : Set references bit to 0
+        else{
+            clockSet[ way ].CLOCK_refer = false;
+        }
+        // Search next place
+        way = way + 1;
+        // Check border
+        if (way == assoc)
+            way = 0;
     }
-    way = way+1;
-    if (way==assoc)
-        way=0;
-    linestate[setIndex]=way;
+    // Pointer to next
+    way = way + 1;
+    if (way == assoc)
+        way = 0;
+    linestate[ setIndex ]=way;
     // return clock way
     return clockWay;
 }
@@ -296,7 +298,7 @@ void CACHE_REPLACEMENT_STATE::UpdateLRU( UINT32 setIndex, INT32 updateWayID )
 void CACHE_REPLACEMENT_STATE::UpdateCLOCK( UINT32 setIndex, INT32 updateWayID )
 {
     UINT32 currCLOCKstackposition = repl[setIndex][updateWayID].CLOCKstackposition;
-    clockstack[setIndex][currCLOCKstackposition].CLOCKused=true;
+    clockstack[setIndex][currCLOCKstackposition].CLOCK_refer=true;
 }
 
 
