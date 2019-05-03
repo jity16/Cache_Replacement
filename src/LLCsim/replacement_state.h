@@ -27,7 +27,8 @@ typedef enum
     CRC_REPL_LRU        = 0,
     CRC_REPL_RANDOM     = 1,
     CRC_REPL_FIFO       = 2,
-    CRC_REPL_CLOCK      = 3     
+    CRC_REPL_CLOCK      = 3,
+    CRC_REPL_LIP        = 4     
 } ReplacemntPolicy;
 
 // Replacement State Per Cache Line
@@ -66,7 +67,7 @@ class CACHE_REPLACEMENT_STATE
 
     UINT32 * fifo_repl;
     CLOCK_STACK   **clockstack;
-    UINT32 *linestate;
+    UINT32 * linestate;
 
   public:
 
@@ -92,10 +93,17 @@ class CACHE_REPLACEMENT_STATE
     INT32  Get_LRU_Victim( UINT32 setIndex );
     void   UpdateLRU( UINT32 setIndex, INT32 updateWayID );
 
+    // Cache Replacement Policy 2: FIFO
     INT32  Get_FIFO_Victim( UINT32 setIndex );
 
+
+    // Cache Replacement Policy 3: CLOCK
     INT32  Get_CLOCK_Victim( UINT32 setIndex );
     void   UpdateCLOCK( UINT32 setIndex, INT32 updateWayID );
+
+    // Cache Replacement Policy 4: LIP
+    INT32  Get_LIP_Victim( UINT32 setIndex );
+    void   UpdateLIP( UINT32 setIndex, INT32 updateWayID, bool cacheHit );
 };
 
 

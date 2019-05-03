@@ -132,6 +132,11 @@ INT32 CACHE_REPLACEMENT_STATE::GetVictimInSet( UINT32 tid, UINT32 setIndex, cons
     {
         return Get_CLOCK_Victim( setIndex );
     }
+    // Replacement Policy 4: LIP
+    else if( replPolicy == CRC_REPL_LIP )
+    {
+        return Get_LIP_Victim( setIndex );
+    }
 
 
     // We should never get here
@@ -175,6 +180,11 @@ void CACHE_REPLACEMENT_STATE::UpdateReplacementState(
     {
         UpdateCLOCK( setIndex, updateWayID );
     }
+    else if( replPolicy == CRC_REPL_LIP )
+    {
+        UpdateLIP( setIndex, updateWayID ,cacheHit);
+    }
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -269,6 +279,22 @@ INT32 CACHE_REPLACEMENT_STATE::Get_CLOCK_Victim( UINT32 setIndex ) {
 }
 
 
+// Replacement Policy 4 : LIP
+INT32 CACHE_REPLACEMENT_STATE::Get_LIP_Victim( UINT32 setIndex ) {
+    LINE_REPLACEMENT_STATE *replSet = repl[ setIndex ];
+    INT32   lipWay   = 0;
+    for(UINT32 way=0; way < assoc; way++) 
+    {
+        if( replSet[way].LRUstackposition == (assoc-1) ) 
+        {
+            lipWay = way;
+            break;
+        }
+    }
+    return lipWay;
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 //                                                                            //
 // This function implements the LRU update routine for the traditional        //
@@ -299,6 +325,31 @@ void CACHE_REPLACEMENT_STATE::UpdateCLOCK( UINT32 setIndex, INT32 updateWayID )
 {
     UINT32 currCLOCKstackposition = repl[setIndex][updateWayID].CLOCKstackposition;
     clockstack[setIndex][currCLOCKstackposition].CLOCK_refer=true;
+}
+
+void CACHE_REPLACEMENT_STATE::UpdateLIP( UINT32 setIndex, INT32 updateWayID, bool cacheHit )
+{
+    // Determine current LRU stack position
+    UINT32 currLRUstackposition = repl[ setIndex ][ updateWayID ].LRUstackposition;
+
+    // hit
+    // Update the stack position of all lines before the current line
+    // Update implies incremeting their stack positions by one
+    if (cacheHit) {
+        for(UINT32 way=0; way<assoc; way++) 
+        {
+            if( repl[setIndex][way].LRUstackposition < currLRUstackposition ) 
+            {
+                repl[setIndex][way].LRUstackposition++;
+            }
+        }
+        // Set the LRU stack position of new line to be zero
+        repl[ setIndex ][ updateWayID ].LRUstackposition = 0;
+    }
+    else {
+        // Cache miss
+        repl[ setIndex ][ updateWayID ].LRUstackposition = assoc - 1;
+    } 
 }
 
 
