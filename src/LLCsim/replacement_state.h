@@ -95,7 +95,7 @@ class CACHE_REPLACEMENT_STATE
     INT32  Get_FIFO_Victim( UINT32 setIndex );
 
     INT32  Get_CLOCK_Victim( UINT32 setIndex );
-    // void   UpdateCLOCK( UINT32 setIndex, INT32 updateWayID );
+    void   UpdateCLOCK( UINT32 setIndex, INT32 updateWayID );
 };
 
 

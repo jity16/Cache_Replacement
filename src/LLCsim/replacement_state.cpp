@@ -173,7 +173,8 @@ void CACHE_REPLACEMENT_STATE::UpdateReplacementState(
     // Replacement Policy 3: CLOCK
     else if( replPolicy == CRC_REPL_CLOCK )
     {
-        clockstack[setIndex][repl[setIndex][updateWayID].CLOCKstackposition].CLOCKused=true;
+        UpdateCLOCK( setIndex, updateWayID );
+        // clockstack[setIndex][repl[setIndex][updateWayID].CLOCKstackposition].CLOCKused=true;
     }
 }
 
@@ -292,11 +293,11 @@ void CACHE_REPLACEMENT_STATE::UpdateLRU( UINT32 setIndex, INT32 updateWayID )
     repl[ setIndex ][ updateWayID ].LRUstackposition = 0;
 }
 
-// void CACHE_REPLACEMENT_STATE::UpdateCLOCK( UINT32 setIndex, INT32 updateWayID )
-// {
-//      UINT32 currCLOCKstackposition = repl[setIndex][updateWayID].CLOCKstackposition;
-//      clock_repl[setIndex][currCLOCKstackposition].CLOCK_refer=1;
-// }
+void CACHE_REPLACEMENT_STATE::UpdateCLOCK( UINT32 setIndex, INT32 updateWayID )
+{
+    UINT32 currCLOCKstackposition = repl[setIndex][updateWayID].CLOCKstackposition;
+    clockstack[setIndex][currCLOCKstackposition].CLOCKused=true;
+}
 
 
 
