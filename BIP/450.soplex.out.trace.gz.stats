@@ -1,0 +1,739 @@
+PIN Tool Info:
+	Max Number of Threads Supported: 130
+
+
+Workload Info:
+	Total Number of Hardware Threads: 1
+	Total Number of Application Threads: 1
+	Executing application to completion
+
+Statistics: 
+	Defined Simulation Regions: 1
+	Log Every 100 Million Instructions
+	Reset Sharing Stats: 0
+
+Caches  -- Experiment: 0
+All Latencies Are Load-To-Use Latencies
+
+	[Level 0] FLC iCache Size: 32KB  -*- Assoc: 4 -*- TPC: 1 -*- RepPol: -- True LRU -- -*- Lat: 0
+	[Level 0] FLC  Cache Size: 32KB  -*- Assoc: 8 -*- TPC: 1 -*- RepPol: -- True LRU -- -*- Lat: 0
+
+	[Level 1] MLC  Cache Size: 256KB  -*- Assoc: 8 -*- TPC: 1 -*- RepPol: -- True LRU -- -*- Lat: 10
+
+	[Level 2] LLC  Cache Size: 1024KB  -*- Assoc: 16 -*- TPC: 1 -*- RepPol: -- Contestant Replacement Policy -- -*- Lat: 30
+
+	[Level 3] MEM  Latency: 200
+
+Opened Binary Trace File: ../traces/450.soplex.out.trace.gz
+
+
+Thread ID: 0
+###################################################################
+# Total Number of Instructions Forwarded: 0
+# Total Number of Instructions Executed:  60497953
+###################################################################
+
+
+Thread Counts: 
+	Thread: 0 Instructions: 60497953 Cycles: 82280383
+
+
++=+=+=+=+=+=+=+=+=+=+=+=+=+=+= EXPERIMENT 0 +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
+Experiment: 0 Level: 0 CacheID: 0
+IL1:   
+
+  Cache Size: 32K (32768 bytes)
+  Line Size: 64B
+  Associativity: 4
+  Number of Banks: 1
+  Replacement Type: -- True LRU --
+
+       iFetch Hits:           60383485
+       iFetch Misses:           114468
+       iFetch Accesses:       60497953
+       iFetch Miss Rate:            0%
+
+        Total Hits:           60383485
+        Total Misses:           114468
+        Total Accesses:       60497953
+        Total Miss Rate:            0%
+
+
+Per Thread Access Statistics:
+	Thread 0: Accesses:      60497953 Misses:        114468 Miss Rate:             0%
+
+Total Number of Non Temporal Fills: 0
+
+Total Number of Conflict Misses: 113956
+Total Number of Dead Victims: 4163
+Total Number of Clean Dead Victims: 4163
+Total Number of Useless Prefetches: 0
+Total Number of Useless Non Temporal Fills: 0
+Total Number of Conflict Misses That Were Shared: 0
+
+Total Number of OutStanding WriteBacks: 0
+Total Number of Write Backs: 0
+Total Number of Write Backs Due To Back Invals: 0
+
+
+REUSE Information: 
+
+Cache Usage: 
+	Lines Occupied By Thread [0] = 512
+
+
+
+
+
+Experiment: 0 Level: 1 CacheID: 0
+DL1:   
+
+  Cache Size: 32K (32768 bytes)
+  Line Size: 64B
+  Associativity: 8
+  Number of Banks: 1
+  Replacement Type: -- True LRU --
+
+         Load Hits:           12774311
+         Load Misses:           733539
+         Load Accesses:       13507850
+         Load Miss Rate:            5%
+
+        Store Hits:            5365049
+        Store Misses:           268978
+        Store Accesses:        5634027
+        Store Miss Rate:            4%
+
+        Total Hits:           18139360
+        Total Misses:          1002517
+        Total Accesses:       19141877
+        Total Miss Rate:            5%
+
+
+Per Thread Access Statistics:
+	Thread 0: Accesses:      19141877 Misses:       1002517 Miss Rate:             5%
+
+Total Number of Non Temporal Fills: 0
+
+Total Number of Conflict Misses: 1002005
+Total Number of Dead Victims: 152062
+Total Number of Clean Dead Victims: 129159
+Total Number of Useless Prefetches: 0
+Total Number of Useless Non Temporal Fills: 0
+Total Number of Conflict Misses That Were Shared: 0
+
+Total Number of OutStanding WriteBacks: 223
+Total Number of Write Backs: 400169
+Total Number of Write Backs Due To Back Invals: 0
+
+
+REUSE Information: 
+
+Cache Usage: 
+	Lines Occupied By Thread [0] = 512
+
+
+
+
+
+Experiment: 0 Level: 2 CacheID: 0
+UL2:   
+
+  Cache Size: 256K (262144 bytes)
+  Line Size: 64B
+  Associativity: 8
+  Number of Banks: 1
+  Replacement Type: -- True LRU --
+
+       iFetch Hits:              85200
+       iFetch Misses:            29268
+       iFetch Accesses:         114468
+       iFetch Miss Rate:           25%
+
+         Load Hits:             643561
+         Load Misses:            89978
+         Load Accesses:         733539
+         Load Miss Rate:           12%
+
+        Store Hits:             194445
+        Store Misses:            74533
+        Store Accesses:         268978
+        Store Miss Rate:           27%
+
+    WriteBack Hits:             399993
+    WriteBack Misses:              176
+    WriteBack Accesses:         400169
+    WriteBack Miss Rate:            0%
+
+        Total Hits:             923206
+        Total Misses:           193779
+        Total Accesses:        1116985
+        Total Miss Rate:           17%
+
+
+Per Thread Access Statistics:
+	Thread 0: Accesses:       1116985 Misses:        193779 Miss Rate:            17%
+
+Total Number of Non Temporal Fills: 0
+
+Total Number of Conflict Misses: 189859
+Total Number of Dead Victims: 94613
+Total Number of Clean Dead Victims: 53812
+Total Number of Useless Prefetches: 0
+Total Number of Useless Non Temporal Fills: 0
+Total Number of Conflict Misses That Were Shared: 0
+
+Total Number of OutStanding WriteBacks: 1587
+Total Number of Write Backs: 92416
+Total Number of Write Backs Due To Back Invals: 0
+
+
+REUSE Information: 
+
+Cache Usage: 
+	Lines Occupied By Thread [0] = 4096
+
+
+
+
+
+==========================================================
+==== Cache Replacement Championship -- LLC Statistics ====
+==========================================================
+
+
+Cache Configuration: 
+	Cache Size:     1024K
+	Line Size:      64B
+	Associativity:  16
+	Tot # Sets:     1024
+	Tot # Threads:  1
+
+Cache Statistics: 
+
+	IFETCH    Accesses:   29268
+	IFETCH    Misses:     6032
+	IFETCH    Hits:       23236
+	IFETCH    Miss Rate:  20.6095
+
+	LOAD      Accesses:   89978
+	LOAD      Misses:     11021
+	LOAD      Hits:       78957
+	LOAD      Miss Rate:  12.2485
+
+	STORE     Accesses:   74533
+	STORE     Misses:     16632
+	STORE     Hits:       57901
+	STORE     Miss Rate:  22.3149
+
+	WRITEBACK Accesses:   92518
+	WRITEBACK Misses:     5191
+	WRITEBACK Hits:       87327
+	WRITEBACK Miss Rate:  5.6108
+
+
+Per Thread Demand Reference Statistics: 
+	Thread: 0 Lookups: 193779 Misses: 33685 Miss Rate: 17.3832
+
+==========================================================
+=========== Replacement Policy Statistics ================
+==========================================================
+Application Summary: 
+	Current Time Stamp: Sat May  4 17:02:38 2019
+
+	Total Number Application Instructions Executed: 60497953
+[CMP$im] Finished Requested Instruction Count 60497953  for App 0 at Time: 22060582
+Finish Dump Start: 0
+
+
+Thread ID: 0
+###################################################################
+# Total Number of Instructions Forwarded: 0
+# Total Number of Instructions Executed:  60497953
+###################################################################
+
+
+Thread Counts: 
+	Thread: 0 Instructions: 60497953 Cycles: 82280383
+
+
++=+=+=+=+=+=+=+=+=+=+=+=+=+=+= EXPERIMENT 0 +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
+Experiment: 0 Level: 0 CacheID: 0
+IL1:   
+
+  Cache Size: 32K (32768 bytes)
+  Line Size: 64B
+  Associativity: 4
+  Number of Banks: 1
+  Replacement Type: -- True LRU --
+
+       iFetch Hits:           60383485
+       iFetch Misses:           114468
+       iFetch Accesses:       60497953
+       iFetch Miss Rate:            0%
+
+        Total Hits:           60383485
+        Total Misses:           114468
+        Total Accesses:       60497953
+        Total Miss Rate:            0%
+
+
+Per Thread Access Statistics:
+	Thread 0: Accesses:      60497953 Misses:        114468 Miss Rate:             0%
+
+Total Number of Non Temporal Fills: 0
+
+Total Number of Conflict Misses: 113956
+Total Number of Dead Victims: 4163
+Total Number of Clean Dead Victims: 4163
+Total Number of Useless Prefetches: 0
+Total Number of Useless Non Temporal Fills: 0
+Total Number of Conflict Misses That Were Shared: 0
+
+Total Number of OutStanding WriteBacks: 0
+Total Number of Write Backs: 0
+Total Number of Write Backs Due To Back Invals: 0
+
+
+REUSE Information: 
+
+Cache Usage: 
+	Lines Occupied By Thread [0] = 512
+
+
+
+
+
+Experiment: 0 Level: 1 CacheID: 0
+DL1:   
+
+  Cache Size: 32K (32768 bytes)
+  Line Size: 64B
+  Associativity: 8
+  Number of Banks: 1
+  Replacement Type: -- True LRU --
+
+         Load Hits:           12774311
+         Load Misses:           733539
+         Load Accesses:       13507850
+         Load Miss Rate:            5%
+
+        Store Hits:            5365049
+        Store Misses:           268978
+        Store Accesses:        5634027
+        Store Miss Rate:            4%
+
+        Total Hits:           18139360
+        Total Misses:          1002517
+        Total Accesses:       19141877
+        Total Miss Rate:            5%
+
+
+Per Thread Access Statistics:
+	Thread 0: Accesses:      19141877 Misses:       1002517 Miss Rate:             5%
+
+Total Number of Non Temporal Fills: 0
+
+Total Number of Conflict Misses: 1002005
+Total Number of Dead Victims: 152062
+Total Number of Clean Dead Victims: 129159
+Total Number of Useless Prefetches: 0
+Total Number of Useless Non Temporal Fills: 0
+Total Number of Conflict Misses That Were Shared: 0
+
+Total Number of OutStanding WriteBacks: 223
+Total Number of Write Backs: 400169
+Total Number of Write Backs Due To Back Invals: 0
+
+
+REUSE Information: 
+
+Cache Usage: 
+	Lines Occupied By Thread [0] = 512
+
+
+
+
+
+Experiment: 0 Level: 2 CacheID: 0
+UL2:   
+
+  Cache Size: 256K (262144 bytes)
+  Line Size: 64B
+  Associativity: 8
+  Number of Banks: 1
+  Replacement Type: -- True LRU --
+
+       iFetch Hits:              85200
+       iFetch Misses:            29268
+       iFetch Accesses:         114468
+       iFetch Miss Rate:           25%
+
+         Load Hits:             643561
+         Load Misses:            89978
+         Load Accesses:         733539
+         Load Miss Rate:           12%
+
+        Store Hits:             194445
+        Store Misses:            74533
+        Store Accesses:         268978
+        Store Miss Rate:           27%
+
+    WriteBack Hits:             399993
+    WriteBack Misses:              176
+    WriteBack Accesses:         400169
+    WriteBack Miss Rate:            0%
+
+        Total Hits:             923206
+        Total Misses:           193779
+        Total Accesses:        1116985
+        Total Miss Rate:           17%
+
+
+Per Thread Access Statistics:
+	Thread 0: Accesses:       1116985 Misses:        193779 Miss Rate:            17%
+
+Total Number of Non Temporal Fills: 0
+
+Total Number of Conflict Misses: 189859
+Total Number of Dead Victims: 94613
+Total Number of Clean Dead Victims: 53812
+Total Number of Useless Prefetches: 0
+Total Number of Useless Non Temporal Fills: 0
+Total Number of Conflict Misses That Were Shared: 0
+
+Total Number of OutStanding WriteBacks: 1587
+Total Number of Write Backs: 92416
+Total Number of Write Backs Due To Back Invals: 0
+
+
+REUSE Information: 
+
+Cache Usage: 
+	Lines Occupied By Thread [0] = 4096
+
+
+
+
+
+==========================================================
+==== Cache Replacement Championship -- LLC Statistics ====
+==========================================================
+
+
+Cache Configuration: 
+	Cache Size:     1024K
+	Line Size:      64B
+	Associativity:  16
+	Tot # Sets:     1024
+	Tot # Threads:  1
+
+Cache Statistics: 
+
+	IFETCH    Accesses:   29268
+	IFETCH    Misses:     6032
+	IFETCH    Hits:       23236
+	IFETCH    Miss Rate:  20.6095
+
+	LOAD      Accesses:   89978
+	LOAD      Misses:     11021
+	LOAD      Hits:       78957
+	LOAD      Miss Rate:  12.2485
+
+	STORE     Accesses:   74533
+	STORE     Misses:     16632
+	STORE     Hits:       57901
+	STORE     Miss Rate:  22.3149
+
+	WRITEBACK Accesses:   92518
+	WRITEBACK Misses:     5191
+	WRITEBACK Hits:       87327
+	WRITEBACK Miss Rate:  5.6108
+
+
+Per Thread Demand Reference Statistics: 
+	Thread: 0 Lookups: 193779 Misses: 33685 Miss Rate: 17.3832
+
+==========================================================
+=========== Replacement Policy Statistics ================
+==========================================================
+Application Summary: 
+	Current Time Stamp: Sat May  4 17:02:39 2019
+
+	Total Number Application Instructions Executed: 60497953
+Finish Dump End: 0
+
+
+Thread ID: 0
+###################################################################
+# Total Number of Instructions Forwarded: 0
+# Total Number of Instructions Executed:  60497953
+###################################################################
+
+
+Thread Counts: 
+	Thread: 0 Instructions: 60497953 Cycles: 82280383
+
+
++=+=+=+=+=+=+=+=+=+=+=+=+=+=+= EXPERIMENT 0 +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
+Experiment: 0 Level: 0 CacheID: 0
+IL1:   
+
+  Cache Size: 32K (32768 bytes)
+  Line Size: 64B
+  Associativity: 4
+  Number of Banks: 1
+  Replacement Type: -- True LRU --
+
+       iFetch Hits:           60383485
+       iFetch Misses:           114468
+       iFetch Accesses:       60497953
+       iFetch Miss Rate:            0%
+
+        Total Hits:           60383485
+        Total Misses:           114468
+        Total Accesses:       60497953
+        Total Miss Rate:            0%
+
+
+Per Thread Access Statistics:
+	Thread 0: Accesses:      60497953 Misses:        114468 Miss Rate:             0%
+
+Total Number of Non Temporal Fills: 0
+
+Total Number of Conflict Misses: 113956
+Total Number of Dead Victims: 4163
+Total Number of Clean Dead Victims: 4163
+Total Number of Useless Prefetches: 0
+Total Number of Useless Non Temporal Fills: 0
+Total Number of Conflict Misses That Were Shared: 0
+
+Total Number of OutStanding WriteBacks: 0
+Total Number of Write Backs: 0
+Total Number of Write Backs Due To Back Invals: 0
+
+
+REUSE Information: 
+
+Cache Usage: 
+	Lines Occupied By Thread [0] = 512
+
+
+
+
+
+Experiment: 0 Level: 1 CacheID: 0
+DL1:   
+
+  Cache Size: 32K (32768 bytes)
+  Line Size: 64B
+  Associativity: 8
+  Number of Banks: 1
+  Replacement Type: -- True LRU --
+
+         Load Hits:           12774311
+         Load Misses:           733539
+         Load Accesses:       13507850
+         Load Miss Rate:            5%
+
+        Store Hits:            5365049
+        Store Misses:           268978
+        Store Accesses:        5634027
+        Store Miss Rate:            4%
+
+        Total Hits:           18139360
+        Total Misses:          1002517
+        Total Accesses:       19141877
+        Total Miss Rate:            5%
+
+
+Per Thread Access Statistics:
+	Thread 0: Accesses:      19141877 Misses:       1002517 Miss Rate:             5%
+
+Total Number of Non Temporal Fills: 0
+
+Total Number of Conflict Misses: 1002005
+Total Number of Dead Victims: 152062
+Total Number of Clean Dead Victims: 129159
+Total Number of Useless Prefetches: 0
+Total Number of Useless Non Temporal Fills: 0
+Total Number of Conflict Misses That Were Shared: 0
+
+Total Number of OutStanding WriteBacks: 223
+Total Number of Write Backs: 400169
+Total Number of Write Backs Due To Back Invals: 0
+
+
+REUSE Information: 
+
+Cache Usage: 
+	Lines Occupied By Thread [0] = 512
+
+
+
+
+
+Experiment: 0 Level: 2 CacheID: 0
+UL2:   
+
+  Cache Size: 256K (262144 bytes)
+  Line Size: 64B
+  Associativity: 8
+  Number of Banks: 1
+  Replacement Type: -- True LRU --
+
+       iFetch Hits:              85200
+       iFetch Misses:            29268
+       iFetch Accesses:         114468
+       iFetch Miss Rate:           25%
+
+         Load Hits:             643561
+         Load Misses:            89978
+         Load Accesses:         733539
+         Load Miss Rate:           12%
+
+        Store Hits:             194445
+        Store Misses:            74533
+        Store Accesses:         268978
+        Store Miss Rate:           27%
+
+    WriteBack Hits:             399993
+    WriteBack Misses:              176
+    WriteBack Accesses:         400169
+    WriteBack Miss Rate:            0%
+
+        Total Hits:             923206
+        Total Misses:           193779
+        Total Accesses:        1116985
+        Total Miss Rate:           17%
+
+
+Per Thread Access Statistics:
+	Thread 0: Accesses:       1116985 Misses:        193779 Miss Rate:            17%
+
+Total Number of Non Temporal Fills: 0
+
+Total Number of Conflict Misses: 189859
+Total Number of Dead Victims: 94613
+Total Number of Clean Dead Victims: 53812
+Total Number of Useless Prefetches: 0
+Total Number of Useless Non Temporal Fills: 0
+Total Number of Conflict Misses That Were Shared: 0
+
+Total Number of OutStanding WriteBacks: 1587
+Total Number of Write Backs: 92416
+Total Number of Write Backs Due To Back Invals: 0
+
+
+REUSE Information: 
+
+Cache Usage: 
+	Lines Occupied By Thread [0] = 4096
+
+
+
+
+
+==========================================================
+==== Cache Replacement Championship -- LLC Statistics ====
+==========================================================
+
+
+Cache Configuration: 
+	Cache Size:     1024K
+	Line Size:      64B
+	Associativity:  16
+	Tot # Sets:     1024
+	Tot # Threads:  1
+
+Cache Statistics: 
+
+	IFETCH    Accesses:   29268
+	IFETCH    Misses:     6032
+	IFETCH    Hits:       23236
+	IFETCH    Miss Rate:  20.6095
+
+	LOAD      Accesses:   89978
+	LOAD      Misses:     11021
+	LOAD      Hits:       78957
+	LOAD      Miss Rate:  12.2485
+
+	STORE     Accesses:   74533
+	STORE     Misses:     16632
+	STORE     Hits:       57901
+	STORE     Miss Rate:  22.3149
+
+	WRITEBACK Accesses:   92518
+	WRITEBACK Misses:     5191
+	WRITEBACK Hits:       87327
+	WRITEBACK Miss Rate:  5.6108
+
+
+Per Thread Demand Reference Statistics: 
+	Thread: 0 Lookups: 193779 Misses: 33685 Miss Rate: 17.3832
+
+==========================================================
+=========== Replacement Policy Statistics ================
+==========================================================
+Application Summary: 
+	Current Time Stamp: Sat May  4 17:02:39 2019
+
+	Total Number Application Instructions Executed: 60497953
+
+Thread ID: 0 Says I am DONE!
+
+Application Finished
+ -- Reached End of Total Requested Instruction Count -- 
+
+
+Full Run Summary: (Global Instructions: 60497953)
+	Thread ID: 0 ICOUNT: 60497953 CYC: 22060583 CPI: 0.36465 Global Cycles: 22060583 LLC Misses: 33685
+
+
+Region of Interest Summary: 
+	Thread ID: 0 ICOUNT: 60497953 CYC: 22060582 CPI: 0.36465 Global Cycles: 22060583 LLC Misses: 33685
+
+==========================================================
+==== Cache Replacement Championship -- LLC Statistics ====
+==========================================================
+
+
+Cache Configuration: 
+	Cache Size:     1024K
+	Line Size:      64B
+	Associativity:  16
+	Tot # Sets:     1024
+	Tot # Threads:  1
+
+Cache Statistics: 
+
+	IFETCH    Accesses:   29268
+	IFETCH    Misses:     6032
+	IFETCH    Hits:       23236
+	IFETCH    Miss Rate:  20.6095
+
+	LOAD      Accesses:   89978
+	LOAD      Misses:     11021
+	LOAD      Hits:       78957
+	LOAD      Miss Rate:  12.2485
+
+	STORE     Accesses:   74533
+	STORE     Misses:     16632
+	STORE     Hits:       57901
+	STORE     Miss Rate:  22.3149
+
+	WRITEBACK Accesses:   92518
+	WRITEBACK Misses:     5191
+	WRITEBACK Hits:       87327
+	WRITEBACK Miss Rate:  5.6108
+
+
+Per Thread Demand Reference Statistics: 
+	Thread: 0 Lookups: 193779 Misses: 33685 Miss Rate: 17.3832
+
+==========================================================
+=========== Replacement Policy Statistics ================
+==========================================================
